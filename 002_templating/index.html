@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>A Vue JS App || Templating</title>
+</head>
+<body>
+
+	<div id="app">
+
+		<!-- TEXT TEMPLATING IN VUE JS APP -->
+		<h2 style="font-style: bold;">Text Templating Basic</h2>
+		<hr>
+		<span>Text Binding: {{ text }}</span>
+		<br><br><br>
+
+		<h2 style="font-style: bold;">One Time Binding == v-once</h2>
+		<hr>
+		<!-- One Time Binding == v-once -->
+		<span v-once> Text Binding : {{ text }}</span>
+		<br><br><br>
+
+		<h2 style="font-style: bold;">Raw HTML == v-html</h2>
+		<hr>
+		<!-- Raw HTML == v-html -->
+		<span v-html="htmlContent"></span>
+		<br><br><br>
+
+		<h2 style="font-style: bold;">Attributes Templating Basic</h2>
+		<hr>
+		<!-- Attributes -->
+		<button v-bind:disabled="isDisabledAttr">Disabled</button>
+		<br><br>
+		<button :enabled="isDisabledAttr">Disabled</button>
+		<br><br><br>
+
+		<h2 style="font-style: bold;">JS Expressions Templating</h2>
+		<hr>
+		<!-- JS Expressions -->
+		<span>{{ text + ' ' + isDisabledAttr }}</span><br><br><br>
+
+
+		<!-- Directives -->
+		<h2 style="font-style: bold;">Directives Templating Basic</h2>
+		<hr>
+		<span v-if="isDisabledAttr">Show if isDisabledAttr</span>
+		<br>
+		<span v-if="!isDisabledAttr">Show if not isDisabledAttr</span>
+		<br><br><br>
+
+		<!-- Filters -->
+		<h2 style="font-style: bold;">Filters Templating Basic In Vue JS App</h2>
+		<hr>
+		<span>{{text | allCaps}}</span>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.6/vue.min.js">
+    </script>
+
+    <script>
+    	new Vue({
+			el: '#app',
+			data(){
+    	  		return{
+    	  			text: 'Hello World',
+    	  			htmlContent: 'Hello bold new World',
+    	  			isDisabledAttr: true
+    	  		}
+    	  	},
+    	  	filters: {
+    	  		allCaps: function (value){
+    	  			if (!value) return ''
+    	  			value = value.toString()
+    	  			return value.toUpperCase();
+    	  		}
+    	  	}
+    	})
+    </script>
+</body>
+</html>

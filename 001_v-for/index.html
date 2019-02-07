@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>V-For in Vue JS</title>
+</head>
+<body>
+	<div id="v-for">
+		<h1>V-For General</h1>
+		<hr>
+		<ul>
+			<li v-for="msg in msg">{{ msg }}</li>
+			<br>
+			<li v-for="item in shoppingItems">
+				{{ item.name }} - {{ item.price }}
+			</li>
+		</ul>
+		<br>
+		<br>
+
+		<h1>V-for With Template Element</h1>
+		<hr>
+		<!-- V-For In Templates Element Vue JS -->
+		<template v-for="item in shoppingItems">
+			<label>{{ item.name }}</label> - 
+			<label>{{ item.price }}</label>
+			<button>Buy</button>
+			<br>
+		</template>
+		<br>
+		<br>
+		<h1>V-for With Key</h1>
+		<hr>
+		<ul>
+			<li v-for="item in shoppingItems" :key="item.name">
+				{{ item.name }} - {{ item.price }}
+			</li>
+		</ul>
+	</div>
+
+	<h1>V-for With Object Items</h1>
+	<hr>
+	<!-- V-For with Objects -->
+	<div id="v-for__objects">
+		<ul>
+			<li v-for="item in objectItems">{{ item }}</li>
+			<br>
+			<h2>The key and the index values</h2>
+			<hr>
+			<li v-for="(item, key, index) in objectItems">
+				{{ item }} - {{ key }} - {{ index }}
+			</li>
+			<h2>V-for With Range</h2>
+			<hr>
+			<li v-for="item in 15">
+				{{ item }}
+			</li>
+		</ul>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.22/vue.min.js" type="text/javascript"></script>
+
+	<script type="text/javascript">
+		new Vue({
+		  el: '#v-for',
+		  data() {
+		  	return{
+		  		msg: ['Hello', 'Vue', 'JS'],
+		  		shoppingItems: [
+		  			{
+		  				name: 'Apple', price: '10'
+		  			},
+		  			{
+		  				name: 'Orange', price: '25'
+		  			}
+		  		]
+		  	}
+		  }
+		}),
+		new Vue({
+		  el: '#v-for__objects',
+		  data() {
+		  	return{
+		  		objectItems: {
+		  			key1: 'Item 1',
+		  			key2: 'Item 2',
+		  			key3: 'Item 3'
+		  		},
+		  	}
+		  }
+		})
+	</script>
+</body>
+</html>

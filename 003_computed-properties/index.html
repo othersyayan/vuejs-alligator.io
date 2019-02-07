@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>A Vue JS App || Computed Properties</title>
+</head>
+<body>
+
+	<div id="app">
+		<h2 style="font-style: bold;">Vue JS Computed Properties Basic</h2>
+		<hr><br>
+		<div v-for="subject in results">
+			<input v-model="subject.marks">
+			<span>
+				Marks For {{ subject.title }}: {{ subject.marks }}
+			</span>
+		</div>
+		<br>
+		<span>
+			Total Marks are : {{ totalMarks }}
+		</span>
+		<br>
+		<br>
+		<br>
+
+		<h2 style="font-style: bold;">Vue JS Computed Setters</h2>
+		<hr>
+		<input v-model="tempName">
+		<button v-on:click="setName()">Set</button>
+		<span>{{ fullName }}</span><br><br>
+		<span>First Name : {{ firstName }}</span><br>
+		<span>Last Name : {{ lastName }}</span><br>
+
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.6/vue.min.js"></script>
+	
+	<script>
+		new Vue({
+		  el: '#app',
+		  data() {
+		  	return{
+		  		tempName: '',
+		  		firstName: '',
+		  		lastName: '',
+		  		results: [
+		  			{
+		  				name: 'English',
+		  				marks: 0
+		  			},
+		  			{
+		  				name: 'Math',
+		  				marks: 0
+		  			},
+		  			{
+		  				name: 'History',
+		  				marks: 0
+		  			}
+		  		]	
+		  	}
+		  },
+		  computed:{
+		  	totalMarks: function(){
+		  		let total = 0;
+		  		for(let i = 0; i < this.results.length; i++){
+		  			total += parseInt(this.results[i].marks);
+		  		}
+		  		return total;
+		  	},
+		  	fullName: {
+		  		get: function(){
+		  			return this.firstName + this.lastName;
+		  		},
+		  		set: function(value){
+		  			let names = value.split(' ');
+		  			this.firstName = names[0];
+		  			this.lastName = names[names.length - 1];
+
+		  		}
+		  	}
+		  },
+		  methods:{
+		  	setName: function(){
+		  		this.fullName = this.tempName;
+		  	}
+		  }
+		})
+	</script>
+</body>
+</html>
