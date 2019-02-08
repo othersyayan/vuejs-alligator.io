@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>A Vue JS App || Dynamic Style</title>
+</head>
+<body>
+    <div id="app">
+        
+        <!-- Dynamic Style Basic || Binding multiple styles to an element -->
+        <h2 style="font-style: bold;">Dynamic Style Basic || Binding multiple styles to an element</h2>
+        <hr><br>
+        <button @click="fontSize++">
+            Increase Font Size
+        </button>
+        <button @click="fontSize--">
+            Decrease Font Size
+        </button>
+        <p v-bind:style="{ fontSize: fontSize + 'px' }">
+            Font size is : {{ fontSize }}
+        </p><br><br>
+        
+        <!-- Dynamic Style Basic || Array Style -->
+        <h2 style="font-style: bold;">Dynamic Style Basic || Array Style</h2>
+        <hr><br>
+        <p v-bind:style="[baseStyles]">
+            baseStyles
+        </p>
+        <p v-bind:style="[overrideStyles]">
+            overrideStyles
+        </p><br><br>
+
+        <!-- Dynamic Style Basic || Binding Classes Dynamically -->
+        <h2 style="font-style: bold;">Dynamic Style Basic || Binding Classes Dynamically</h2>
+        <hr><br>
+        <ul>
+            <li v-for="item in menuItems" @click="selected = item" v-bind:class="{ selected: selected == item }">{{ item }}</li>
+        </ul>
+
+        <!-- Dynamic Style Basic || Binding Multiple Classes -->
+        <h2 style="font-style: bold;">Dynamic Style Basic || Binding Multiple Classes</h2>
+        <hr><br>
+        <p v-bind:class="[classArray]">
+            Multiple classes {{ classArray }}
+        </p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.6/vue.min.js"></script>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    fontSize: 16,
+                    baseStyles: {
+                        fontWeight: '800',
+                        color: 'red'
+                    },
+                    overrideStyles:{
+                        color: 'blue'
+                    },
+                    selected: 'Home',
+                    menuItems: [
+                        'Home',
+                        'About',
+                        'Contact'
+                    ],
+                    classArray: ['selected', 'underlined']
+                }
+            }
+        })
+    </script>
+</body>
+</html>
